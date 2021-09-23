@@ -1,4 +1,5 @@
 import bpy
+from bpy.props import EnumProperty
 
 bl_info = {
     "name": "Toggle Normal Map Nodes",
@@ -13,11 +14,11 @@ bl_info = {
 
 class MUT_OT_normal_map_nodes(bpy.types.Operator):
     bl_description = "Toggle all normal map nodes off/on"
-    bl_idname = "nodes.mutation"
+    bl_idname = "nodes.muting"
     bl_label = "Un/Mute Normal Map nodes"
     bl_options = set({"REGISTER", "UNDO"})
 
-    mute = bpy.props.EnumProperty(
+    mute:EnumProperty(
         items=[
             ("off", "Off", "Disable all"),
             ("on", "On", "Enable all"),
@@ -66,9 +67,9 @@ class MUT_PT_normal_map_nodes(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.operator("nodes.mutation", text="On").mute = "on"
-        layout.operator("nodes.mutation", text="Off").mute = "off"
-        layout.operator("nodes.mutation", text="Toggle").mute = "toggle"
+        layout.operator("nodes.muting", text="On").mute = "on"
+        layout.operator("nodes.muting", text="Off").mute = "off"
+        layout.operator("nodes.muting", text="Toggle").mute = "toggle"
 
 
 classes = (
